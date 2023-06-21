@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 
 export default function Login() {
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const habilitado = name.length >= 3;
+  const navigate = useNavigate();
 
   const handleNameChange = (event:React.ChangeEvent<HTMLInputElement>) => {
     setName(event?.target.value);
@@ -20,7 +22,7 @@ export default function Login() {
         .then(() => {
           setTimeout(() => {
             setLoading(false);
-            window.location.href = '/search';
+            navigate('/search');
           }, 1000);
         })
         .catch((error) => {
@@ -28,7 +30,7 @@ export default function Login() {
           console.log(error);
         });
     }
-  }, [loading, name]);
+  }, [loading, name, navigate]);
 
   const handleFormSubmit = (event: React.FormEvent) => {
     event?.preventDefault();
