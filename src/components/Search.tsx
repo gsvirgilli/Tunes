@@ -32,17 +32,17 @@ function Search() {
 
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={ handleFormSubmit }>
         <h1>Pesquisar Artista</h1>
         <input
           type="text"
-          value={artistName}
-          onChange={handleInputChange}
+          value={ artistName }
+          onChange={ handleInputChange }
           data-testid="search-artist-input"
         />
         <button
-          onClick={handleSearch}
-          disabled={artistName.length < 2}
+          onClick={ handleSearch }
+          disabled={ artistName.length < 2 }
           data-testid="search-artist-button"
         >
           Pesquisar
@@ -54,13 +54,17 @@ function Search() {
         <div>
           {albums.length > 0 ? (
             <>
-              <p>Resultado de álbuns de: {nomeArtista}</p>
+              <p>
+                Resultado de álbuns de:
+                {' '}
+                {nomeArtista}
+              </p>
               <ul>
                 {albums.map((album) => (
-                  <li key={album.collectionId}>
+                  <li key={ album.collectionId }>
                     <Link
-                      to={`/album/${album.collectionId}`}
-                      data-testid={`link-to-album-${album.collectionId}`}
+                      to={ `/album/${album.collectionId}` }
+                      data-testid={ `link-to-album-${album.collectionId}` }
                     >
                       {album.collectionName}
                     </Link>
