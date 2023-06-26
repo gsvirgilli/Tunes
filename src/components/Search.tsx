@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import { AlbumType } from '../types';
 
@@ -57,12 +58,12 @@ function Search() {
           </p>
           {albums.map((album) => (
             <li key={ album.collectionId }>
-              <a
+              <NavLink
                 data-testid={ `link-to-album-${album.collectionId}` }
-                href={ `/album/${album.collectionId}` }
+                to={ `/album/${album.collectionId}` }
               >
                 {album.collectionName}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
