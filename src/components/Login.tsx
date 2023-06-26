@@ -20,10 +20,8 @@ export default function Login() {
     if (loading) {
       createUser({ name })
         .then(() => {
-          setTimeout(() => {
-            setLoading(false);
-            navigate('/search');
-          }, 1000);
+          setLoading(false);
+          navigate('/search');
         })
         .catch((error) => {
           setLoading(false);

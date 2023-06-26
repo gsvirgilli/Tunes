@@ -27,6 +27,7 @@ function MusicCard({ musicInfos }: { musicInfos: SongType | AlbumType }) {
         htmlFor={ `checkbox-music-${trackId}` }
         data-testid={ `label-music-${trackId}` }
       >
+        <img alt="favorite" src={ heartImage } />
         <input
           type="checkbox"
           id={ `checkbox-music-${trackId}` }
@@ -34,7 +35,6 @@ function MusicCard({ musicInfos }: { musicInfos: SongType | AlbumType }) {
           checked={ isFavorite }
           onChange={ toggleFavorite }
         />
-        <img src={ heartImage } alt="favorite" />
       </label>
     </div>
   );
