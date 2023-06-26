@@ -1,7 +1,18 @@
+import { useState } from 'react';
 import { AlbumType, SongType } from '../types';
+import checkedHeart from '../images/checked_heart.png';
+import emptyHeart from '../images/empty_heart.png';
 
 function MusicCard({ musicInfos }: { musicInfos: SongType | AlbumType }) {
-  const { trackName, previewUrl } = musicInfos as SongType;
+  const { trackId, trackName, previewUrl } = musicInfos as SongType;
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
+
+  const heartImage = isFavorite ? checkedHeart : emptyHeart;
+
   return (
     <div>
       <h3>{trackName}</h3>
@@ -12,6 +23,19 @@ function MusicCard({ musicInfos }: { musicInfos: SongType | AlbumType }) {
         <code>audio</code>
         .
       </audio>
+      <label
+        htmlFor={ `checkbox-music-${trackId}` }
+        data-testid={ `label-music-${trackId}` }
+      >
+        <input
+          type="checkbox"
+          id={ `checkbox-music-${trackId}` }
+          data-testid={ `checkbox-music-${trackId}` }
+          checked={ isFavorite }
+          onChange={ toggleFavorite }
+        />
+        <img src={ heartImage } alt="favorite" />
+      </label>
     </div>
   );
 }
